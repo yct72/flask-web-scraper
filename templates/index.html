@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Welcome Flaskk</title>
+        <script>
+            function list_topic() {
+                const parent = document.getElementById("topics");
+                data = {{ data | tojson }}
+                for (i in data) {
+                    const element = document.createElement("li");
+                    const date_node = document.createTextNode(data[i].date + ', ');
+                    const title = document.createElement("a");
+                    const title_node = document.createTextNode(data[i].title);
+                    title.appendChild(title_node); title.setAttribute('href', data[i].link)
+                    element.appendChild(date_node);
+                    element.appendChild(title);
+                    parent.appendChild(element);
+                    console.log(data[i].title)
+                }
+            }
+        </script>
+    </head>
+    <body onLoad="list_topic()">
+        <section id="topics">
+        </section>
+    </body>
+</html>
